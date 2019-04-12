@@ -1,0 +1,29 @@
+#game {
+  width:515px;
+  height: 570px;
+  border: 7px outset rgba(163,196,209,0.5);
+  background-color: rgb(193, 199, 201);
+}
+#boardDiv {
+  width:500px;
+  height: 500px;
+  border: 7px inset rgba(163,196,209,0.5);
+  /* display: flexbox;
+  justify-content: center; */
+}
+#controls {
+  height: 40px;
+  border: 7px inset rgba(163,196,209,0.5);
+  display: flex;
+  justify-content: space-between;
+  /* background-color: rgb(193, 199, 201); */
+}
+  button {
+    background-color: transparent;
+    border: 7px outset rgba(163,196,209,0.5);
+   }
+
+
+/* body {
+  background-color: red;
+} */
