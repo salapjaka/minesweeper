@@ -21,9 +21,37 @@
   button {
     background-color: transparent;
     border: 7px outset rgba(163,196,209,0.5);
+    position:relative;
    }
 
-
-/* body {
-  background-color: red;
-} */
+.flagcol {
+  height: 80%;
+  float: left;
+}
+.flagrow {
+  width:100%;
+  height: 50%; 
+} 
+#flagleft {
+  width: 70%
+}
+#flagstick {
+  width: 2px;
+  background-color: black;
+}
+#flagtriangle {
+  width: 0px;
+  height: 0px;
+  border-right: 15px solid red;
+  border-top: 15px solid transparent;
+}
+button span {
+  position: absolute;
+  margin: auto;
+  display: block;
+  left: 0;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+}
