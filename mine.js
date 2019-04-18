@@ -42,6 +42,7 @@ for (let b = 0; b < 10; b++) {
     }
   }
 }
+
 window.what = 'hiiii'
 
 // function emptySpace (a){ 
@@ -98,6 +99,7 @@ function makeField(a) {
       document.addEventListener('contextmenu', event => event.preventDefault());
       //button.addEventListener("click", doSomething)
       button.addEventListener("click", experiment)
+      button.addEventListener("click", mouseDownWaiting)
       button.reveal = show
       button.oncontextmenu = markBomb;
       button.setAttribute('toggle',1)//setting the toggle to 1 or odd
@@ -118,23 +120,43 @@ function makeField(a) {
 
 // }
 
+markBombs = 0;                               //set markBombs to 0
 function markBomb(){
-
+    let mySound = new Audio("click.mp3");
     let toggleNum = Number(this.getAttribute('toggle'))
-    if(toggleNum%2===0){                            //if this is even - remove flag
+    console.log(this.value);
+    if(toggleNum%2===0){                        //if this is even - remove flag
       this.innerHTML = `<div></div>`
       document.getElementById("score").innerHTML++
-    } else{                                           //if odd - add the flag
+      if(this.value ==="B"){                    //the this is even and the flag is removedand the value is B => decrease markbombs
+        markBombs--
+      } 
+    } else {                                    //if odd - add the flag
       this.innerHTML = `<div class="flagcol" id = "flagleft">
       <div class = "flagrow" id="flagtriangle" > </div>
       <div class = "flagrow"> </div>
       </div>
       <div class="flagcol" id = "flagstick">
       </div>`
+      mySound.play();  
       document.getElementById("score").innerHTML--
+
+      if(this.value ==="B"){                      //the this is odd and the flag is added and the value is B => increase markbombs
+        markBombs++
+      }
     }
     this.setAttribute('toggle',toggleNum+1)
-}
+    console.log('markBombs', markBombs)
+    if(markBombs === 10){                       //if marked bombs with value B is 10 - you won
+      clearInterval(timer);
+      document.getElementById("image").src="win.gif";
+      setTimeout(function(){
+      document.getElementById("image").src="wait.gif";
+      alert('YOU ROCK');
+      },4000)
+    } 
+} 
+
 
 document.getElementById("score").innerHTML = 10;
 
@@ -143,24 +165,74 @@ makeField(arr);
 
 function experiment(){
   
-  
   console.log(this, this.name)
   if(this.value === "B"){
-    let mySound = new Audio("Explosion+5.mp3");
-    mySound.play()
-    firstClick=true;// starts timer upon first click if true
+    // let mySound = new Audio("Explosion+5.mp3");
+     
+    this.innerHTML = `<span>${this.value}</span>`
+    this.style.backgroundColor = "tomato"
+    // mySound.play() 
+   
+          setTimeout(function(){
+            document.getElementById("image").src="gameover.gif";
+            alert("you lost");
+            
+          },4500) 
+          
+          
+// var currentCallback;
+
+// override default browser alert
+window.alert = function(msg, callback){
+  $('.message').text(msg);
+  $('.customAlert').css('animation', 'fadeIn 0.3s linear');
+  $('.customAlert').css('display', 'inline');
+  setTimeout(function(){
+    $('.customAlert').css('animation', 'none');
+  }, 300);
+  // currentCallback = callback;
+}
+
+$(function(){
+  
+  // add listener for when our confirmation button is clicked
+	$('.confirmButton').click (function(){
+    $('.customAlert').css('animation', 'fadeOut 0.3s linear');
+    setTimeout(function(){
+     $('.customAlert').css('animation', 'none');
+		$('.customAlert').css('display', 'none');
+    }, 300);
+    
+  })
+  
+  // $('.rab').click(function(){
+  //   currentCallback();
+  //   alert("RECURSIVE", function(){
+  //     console.log("Callback executed");
+  //   })
+  // });
+  
+  // our custom alert box
+  setTimeout(function(){
+    alert('TIME TO READ THE RULES', function(){
+        // console.log("Callback executed");
+      });
+  }, 500);
+});
+    
+    firstClick=true;                            // starts timer upon first click if true
     clearInterval(timer);
     return showBombs()
     
   
 } clearInterval()
-  if(this.name == "revealed"){ //This cell is only revealed once! 
+  if(this.name == "revealed"){                //This cell is only revealed once! 
     return 
   } else {
     this.setAttribute('name','revealed')
   }
-  if(firstClick === true){            //won't start the timer after further clicks
-  startClock()                      //Only once
+  if(firstClick === true){                    //won't start the timer after further clicks
+  startClock()                                //Only once
   firstClick = false; 
 }
   let j = $(this).index();
@@ -196,28 +268,18 @@ function experiment(){
 
 } 
 
+
 function show(){
     console.log(this.value)
     if(this.value!='B'){
         this.innerHTML = `<span>${this.value}</span>`
-        this.style.backgroundColor = 'blue'
+        this.style.backgroundColor = 'seaGreen'
     }
     if(this.value === '0'){ //When it is zero, we need to reclick that zero 
         let fun = experiment.bind(this)
         setTimeout(function(){ fun() },300)
         
     }
-  
-//   if(this.value!="B"){
-//     this.innerHTML = `<span>${this.value}</span>`
-//     this.style.backgroundColor = 'blue'
-//   } 
-//   if(this.value==="0"){
-//     // let fun = experiment.bind(this)
-//     // fun()
-//     let a = showBind.bind(this) //try to get this to work with the functionality of expriement 
-//     a()
-//   }
 }
 
 function showBind(){
@@ -262,12 +324,11 @@ function gameOver(){
       beginGame(arr);
       makeField(arr);
       
-//   this.innerHTML = `<span>${this.value}</span>`
-//   this.style.backgroundColor = 'blue'
-  
+
 }
 
 function showBombs(){
+  document.getElementById('game').style.animation = 'shake .2s 10 linear'
   let allButtons = [
     document.querySelectorAll('#boardDiv > div:nth-child(1) button'),
     document.querySelectorAll('#boardDiv > div:nth-child(2) button'),
@@ -282,13 +343,29 @@ function showBombs(){
   ]
  
   allButtons.forEach(function(row){
-    row.forEach(function(button){
+    row.forEach(function(button, i){
       console.log(button, button.value)
-      if(button.value === 'B'){
-        button.innerHTML = `<span>${button.value}</span>`
-        button.style.backgroundColor = 'red'
-        
-      } 
+      setTimeout(function(){
+        if(button.value === 'B'){
+          let mySound = new Audio("Explosion+5.mp3");
+          mySound.play()
+          button.innerHTML = `<span>${button.value}</span>`
+          button.style.backgroundColor = 'tomato'
+        } 
+      },i*333)
     })
-  })
+  })  
 }
+
+function mouseDownWaiting() {
+  document.getElementById("image").src="waiting.gif";
+  setTimeout(function(){
+    document.getElementById("image").src="wait.gif";
+  },4000)
+} 
+
+// function gameOverImage() {
+
+// } 
+
+  

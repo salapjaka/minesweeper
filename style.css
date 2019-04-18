@@ -1,10 +1,16 @@
+
+
 #game {
   width:515px;
   height: 570px;
   border: 7px outset rgba(163,196,209,0.5);
   background-color: rgb(193, 199, 201);
+  transform: rotate(0deg);
+
 }
+
 #boardDiv {
+  
   width:500px;
   height: 500px;
   border: 7px inset rgba(163,196,209,0.5);
@@ -15,17 +21,20 @@
   height: 40px;
   border: 7px inset rgba(163,196,209,0.5);
   display: flex;
-  justify-content: space-between;
-  /* background-color: rgb(193, 199, 201); */
+  justify-content: space-between; 
+  background-color: rgb(193, 199, 201);
 }
 
-/* #start{
+#start{
   height: 9px;
-} */
-
-#start img {
-  height: 7px;
 }
+
+/* #start img {
+  height: 45px;
+  display: flexbox;
+  align-self: center;
+
+} */
   button {
     background-color: transparent;
     border: 7px outset rgba(163,196,209,0.5);
@@ -64,81 +73,107 @@ button span {
   height: 100%;
 }
 
-.lds-spinner {
-  color: official;
-  display: inline-block;
-  position: relative;
-  width: 64px;
-  height: 64px;
-}
-.lds-spinner div {
-  transform-origin: 32px 32px;
-  animation: lds-spinner 1.2s linear infinite;
-}
-.lds-spinner div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 3px;
-  left: 29px;
-  width: 5px;
-  height: 14px;
-  border-radius: 20%;
-  background: #fff;
-}
-.lds-spinner div:nth-child(1) {
-  transform: rotate(0deg);
-  animation-delay: -1.1s;
-}
-.lds-spinner div:nth-child(2) {
-  transform: rotate(30deg);
-  animation-delay: -1s;
-}
-.lds-spinner div:nth-child(3) {
-  transform: rotate(60deg);
-  animation-delay: -0.9s;
-}
-.lds-spinner div:nth-child(4) {
-  transform: rotate(90deg);
-  animation-delay: -0.8s;
-}
-.lds-spinner div:nth-child(5) {
-  transform: rotate(120deg);
-  animation-delay: -0.7s;
-}
-.lds-spinner div:nth-child(6) {
-  transform: rotate(150deg);
-  animation-delay: -0.6s;
-}
-.lds-spinner div:nth-child(7) {
-  transform: rotate(180deg);
-  animation-delay: -0.5s;
-}
-.lds-spinner div:nth-child(8) {
-  transform: rotate(210deg);
-  animation-delay: -0.4s;
-}
-.lds-spinner div:nth-child(9) {
-  transform: rotate(240deg);
-  animation-delay: -0.3s;
-}
-.lds-spinner div:nth-child(10) {
-  transform: rotate(270deg);
-  animation-delay: -0.2s;
-}
-.lds-spinner div:nth-child(11) {
-  transform: rotate(300deg);
-  animation-delay: -0.1s;
-}
-.lds-spinner div:nth-child(12) {
-  transform: rotate(330deg);
-  animation-delay: 0s;
-}
-@keyframes lds-spinner {
-  0% {
-    opacity: 1;
+@keyframes shake {
+  0%{
+    transform:rotate(0deg)
   }
-  100% {
+  25%{
+    transform:rotate(-3deg)
+  }
+  50%{
+    transform:rotate(0deg)
+  }
+  75%{
+    transform:rotate(3deg)  
+  }
+  100%{
+    transform: rotate(0deg)
+  }
+}
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+body {
+  background: darken(rgba(163,196,209,0.5), 30%);
+  font-family: 'Noto Sans', 'Helvetica';
+  margin-left: 25%
+}
+
+.customAlert{
+	
+  display: none;
+  position: fixed;
+  max-width: 25%;
+  min-width: 250px !important;
+  min-height: 20%;
+  height: 200px;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: -12.5%;
+  margin-top: -5.2%;
+  background: rgba(163,196,209,0.5);
+  
+  @media all and (max-width: 1300px) {
+    .message{
+      font-size: 14px !important;
+    }
+    input[type='button'] {
+      height: 15% !important;
+    }
+  }
+  
+  .message {
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: justify;
+  }
+    
+  input[type='button']{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 50%;
+    height: 36px;
+    margin-top: -45px;
+    margin-left: -25%;
+    outline: 0;
+    border: 0;
+    background: rgba(163,196,209,0.5);
+    color: white;
+    &:hover{
+      transition: 0.3s;
+      cursor: pointer;
+    	background: lighten(rgba(163,196,209,0.5), 5%);  
+    }
+  } 
+}
+      
+/* .rab{
+  width: 200px;
+  height: 30px;
+  outline: 0;
+  border: 0;
+  color: black;
+  background: darken(rgba(163,196,209,0.5), 5%);
+} */
+      
+@keyframes fadeOut{
+	from{
+  	opacity: 1;
+  } 
+  to{
     opacity: 0;
+  }
+}
+    
+@keyframes fadeIn{
+	from{
+  	opacity: 0;
+  } 
+  to{
+    opacity: 1;
   }
 }
