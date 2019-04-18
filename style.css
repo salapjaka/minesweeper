@@ -18,6 +18,11 @@
   justify-content: space-between;
   /* background-color: rgb(193, 199, 201); */
 }
+
+/* #start{
+  height: 9px;
+} */
+
 #start img {
   height: 7px;
 }

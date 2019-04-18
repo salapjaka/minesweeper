@@ -260,17 +260,17 @@ function doSomething(clickedButton) {
   
   if ($(clickedButton).val() === "B") {
     let mySound = new sound("Explosion+5.mp3");
-    mySound.play()
-    gameOver()
+    mySound.play();
+
+    // gameOver()
     // alert("game over");
     document.getElementById("score").innerHTML = 10;
     document.getElementById("boardDiv").innerHTML = "";
     firstClick = true; // starts timer upon first click if true
     clearInterval(timer);
-
+    
     beginGame([...arr]);
     makeField([...arr]);
-
     arr = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -283,7 +283,7 @@ function doSomething(clickedButton) {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
-    return;
+    // return;
   }
   if ($(clickedButton).val() == 0) {
     getAdjacentEmptySpaces(clickedButton);
@@ -310,12 +310,37 @@ function sound(src) {
       this.sound.pause();
   }    
 }
+function showBombs(){
 
-function gameOver (){
-var img = document.createElement("img");
-img.src = "fake-kernel-panic.jpg";
-document.getElementById("game").appendChild(img);
+  let allButtons = [
+    document.querySelectorAll('#boardDiv > div:nth-child(1) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(2) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(3) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(4) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(5) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(6) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(7) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(8) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(9) button'),
+    document.querySelectorAll('#boardDiv > div:nth-child(10) button'),
+  ]
+
+  allButtons.forEach(function(row){
+    row.forEach(function(button){
+      // console.log(button, button.value)
+      if(button.value === 'B'){
+        button.innerHTML = `<span>${button.value}</span>`
+        button.style.backgroundColor = 'blue'
+      } 
+    })
+  })
 }
+
+// function gameOver (){
+// var img = document.createElement("img");
+// img.src = "fake-kernel-panic.jpg";
+// document.getElementById("game").appendChild(img);
+// }
 
 // var img = document.createElement('img');
 // img.src = 'img/eqp/' + this.apparel + '/' + this.facing + '_idle.png';
