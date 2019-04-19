@@ -121,6 +121,9 @@ body {
   margin-left: 25%
 }
 
+/* * {
+  margin : 0;
+} */
 .customAlert{
 	
   display: none;
