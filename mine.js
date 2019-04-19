@@ -24,7 +24,6 @@ for (let b = 0; b < 10; b++) {
   }
   console.log(a)
 
-
   for (let i = 0; i < a.length; i++) {
     for (let j = 0; j < a[i].length; j++) {
       if (a[i][j] === 'B') {
@@ -42,7 +41,6 @@ for (let b = 0; b < 10; b++) {
     }
   }
 }
-
 window.what = 'hiiii'
 
 // function emptySpace (a){ 
@@ -115,10 +113,7 @@ function makeField(a) {
   }
   //loop within loop and make little boxes with bombs or numbers underneath and add them to the dom
 } 
-// function showEmpty(){
-// if()
 
-// }
 
 markBombs = 0;                               //set markBombs to 0
 function markBomb(){
@@ -128,7 +123,7 @@ function markBomb(){
     if(toggleNum%2===0){                        //if this is even - remove flag
       this.innerHTML = `<div></div>`
       document.getElementById("score").innerHTML++
-      if(this.value ==="B"){                    //the this is even and the flag is removedand the value is B => decrease markbombs
+      if(this.value ==="B"){                    //if this is even and the flag is removed and the value is B => decrease markbombs
         markBombs--
       } 
     } else {                                    //if odd - add the flag
@@ -153,7 +148,9 @@ function markBomb(){
       setTimeout(function(){
       document.getElementById("image").src="wait.gif";
       alert('YOU ROCK');
+       
       },4000)
+      
     } 
 } 
 
@@ -168,64 +165,23 @@ function experiment(){
   console.log(this, this.name)
   if(this.value === "B"){
     // let mySound = new Audio("Explosion+5.mp3");
-     
-    this.innerHTML = `<span>${this.value}</span>`
-    this.style.backgroundColor = "tomato"
+    this.innerHTML = `<span><img src='./time-bomb.png'/></span>`
+    this.style.backgroundColor = 'tomato'
     // mySound.play() 
    
           setTimeout(function(){
             document.getElementById("image").src="gameover.gif";
             alert("you lost");
-            
           },4500) 
           
-          
-// var currentCallback;
-
-// override default browser alert
-window.alert = function(msg, callback){
-  $('.message').text(msg);
-  $('.customAlert').css('animation', 'fadeIn 0.3s linear');
-  $('.customAlert').css('display', 'inline');
-  setTimeout(function(){
-    $('.customAlert').css('animation', 'none');
-  }, 300);
-  // currentCallback = callback;
-}
-
-$(function(){
-  
-  // add listener for when our confirmation button is clicked
-	$('.confirmButton').click (function(){
-    $('.customAlert').css('animation', 'fadeOut 0.3s linear');
-    setTimeout(function(){
-     $('.customAlert').css('animation', 'none');
-		$('.customAlert').css('display', 'none');
-    }, 300);
-    
-  })
-  
-  // $('.rab').click(function(){
-  //   currentCallback();
-  //   alert("RECURSIVE", function(){
-  //     console.log("Callback executed");
-  //   })
-  // });
-  
-  // our custom alert box
-  setTimeout(function(){
-    alert('TIME TO READ THE RULES', function(){
-        // console.log("Callback executed");
-      });
-  }, 500);
-});
     
     firstClick=true;                            // starts timer upon first click if true
     clearInterval(timer);
+    startClock()
     return showBombs()
-    
-  
-} clearInterval()
+} 
+
+clearInterval()
   if(this.name == "revealed"){                //This cell is only revealed once! 
     return 
   } else {
@@ -273,7 +229,7 @@ function show(){
     console.log(this.value)
     if(this.value!='B'){
         this.innerHTML = `<span>${this.value}</span>`
-        this.style.backgroundColor = 'seaGreen'
+        this.style.backgroundColor = "seaGreen"
     }
     if(this.value === '0'){ //When it is zero, we need to reclick that zero 
         let fun = experiment.bind(this)
@@ -303,11 +259,12 @@ function mytimer(){
 
 
 function gameOver(){
-  
-    document.getElementById("score").innerHTML = 10
-    document.getElementById("boardDiv").innerHTML = ''
+window.location.reload();
+document.getElementById("score").innerHTML = 10;
+document.getElementById("boardDiv").innerHTML = '';
     // firstClick=true;// starts timer upon first click if true
     
+
     arr =
       [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -324,11 +281,11 @@ function gameOver(){
       beginGame(arr);
       makeField(arr);
       
-
 }
 
 function showBombs(){
   document.getElementById('game').style.animation = 'shake .2s 10 linear'
+  
   let allButtons = [
     document.querySelectorAll('#boardDiv > div:nth-child(1) button'),
     document.querySelectorAll('#boardDiv > div:nth-child(2) button'),
@@ -347,9 +304,10 @@ function showBombs(){
       console.log(button, button.value)
       setTimeout(function(){
         if(button.value === 'B'){
+          
           let mySound = new Audio("Explosion+5.mp3");
           mySound.play()
-          button.innerHTML = `<span>${button.value}</span>`
+          button.innerHTML = `<span><img src='./time-bomb.png'/></span>`
           button.style.backgroundColor = 'tomato'
         } 
       },i*333)
@@ -364,8 +322,4 @@ function mouseDownWaiting() {
   },4000)
 } 
 
-// function gameOverImage() {
 
-// } 
-
-  

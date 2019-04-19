@@ -256,8 +256,6 @@ function reveal(element) {
 
 function doSomething(clickedButton) {
   // console.log($(clickedButton)[0]);
-  
-  
   if ($(clickedButton).val() === "B") {
     let mySound = new sound("Explosion+5.mp3");
     mySound.play();
@@ -335,16 +333,6 @@ function showBombs(){
     })
   })
 }
-
-// function gameOver (){
-// var img = document.createElement("img");
-// img.src = "fake-kernel-panic.jpg";
-// document.getElementById("game").appendChild(img);
-// }
-
-// var img = document.createElement('img');
-// img.src = 'img/eqp/' + this.apparel + '/' + this.facing + '_idle.png';
-// document.getElementById('gamediv').appendChild(img)
 
 document.getElementById("score").innerHTML = 10;
 

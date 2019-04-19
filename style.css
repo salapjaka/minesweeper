@@ -41,6 +41,17 @@
     position:relative;
    }
 
+/* button > span {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+button > span > img {
+  height: 30px;
+  width: 30px;
+} */
+
 .flagcol {
   height: 80%;
   float: left;
@@ -71,6 +82,18 @@ button span {
   right: 0;
   bottom: 0;
   height: 100%;
+}
+
+button > span {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+button > span > img {
+  
+  height: 30px;
+  width: 30px;
 }
 
 @keyframes shake {
@@ -150,6 +173,8 @@ body {
     }
   } 
 }
+
+
       
 /* .rab{
   width: 200px;
