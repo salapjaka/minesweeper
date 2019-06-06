@@ -1,4 +1,6 @@
-
+/* nav {
+float: right;
+} */
 
 #game {
   width:515px;
@@ -28,6 +30,11 @@
 #start{
   height: 9px;
 }
+h1 {
+  color: tomato;
+}
+
+
 
 /* #start img {
   height: 45px;

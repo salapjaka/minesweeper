@@ -45,53 +45,12 @@ for (let b = 0; b < 10; b++) {
 
 window.what = 'hiiii'
 
-// function emptySpace (a){ 
-//   console.log(a)
-//   let allButtons = [
-//     document.querySelectorAll('#boardDiv > div:nth-child(1) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(2) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(3) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(4) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(5) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(6) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(7) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(8) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(9) button'),
-//     document.querySelectorAll('#boardDiv > div:nth-child(10) button'),
-//   ]
-
-//   //let allButtons = document.querySelector('button')
-//   console.log(allButtons)
-//   console.log(pos, pos.x, '!!!!!')
-//   for (let i = 0; i < a.length; i++) {
-//     for (let j = 0; j < a[i].length; j++) {
-//       let clicked = false; 
-//       if (a[i][j] === 0) {
-//         //console.log(i,j)
-//         //console.log(allButtons[i][j - 1], allButtons[0][5])
-//         allButtons[i][j].click() //to click myself 
-//         !(allButtons[i][j - 1]) ? '' : allButtons[i][j - 1].click() //right
-//         !(allButtons[i][j + 1]) ? '' : allButtons[i][j + 1].click() //left
-//         !allButtons[i + 1] || !(allButtons[i + 1][j]) ? '' : allButtons[i + 1][j].click() //down
-//         !allButtons[i - 1] || !(allButtons[i - 1][j]) ? '' : allButtons[i - 1][j].click() //up
-//         !allButtons[i + 1] || !(allButtons[i + 1][j + 1]) ? '' : allButtons[i + 1][j + 1].click() //right & down
-//         !allButtons[i - 1] || !(allButtons[i - 1][j - 1]) ? '' : allButtons[i - 1][j - 1].click() //left & up
-//         !allButtons[i + 1] || !(allButtons[i + 1][j - 1]) ? '' : allButtons[i + 1][j - 1].click() //left & down
-//         !allButtons[i - 1] || !(allButtons[i - 1][j + 1]) ? '' : allButtons[i - 1][j + 1].click() //right & up
-//         clicked = true
-//     }
-//     if(!clicked) {
-//       //return console.log(a[i][j], allButtons[i][j]) 
-//     }
-//    } 
-//   } 
-// }
 let board = document.getElementById("boardDiv")
 let rows = 10
 let size = 100 / rows
 
 function makeField(a) {
-
+//loop within loop and make little boxes with bombs or numbers underneath and add them to the dom
   for (i = 0; i < rows; i++) {
     let row = document.createElement("div")
     for (x = 0; x < rows; x++) {
@@ -102,7 +61,7 @@ function makeField(a) {
       button.addEventListener("click", mouseDownWaiting)
       button.reveal = show
       button.oncontextmenu = markBomb;
-      button.setAttribute('toggle',1)//setting the toggle to 1 or odd
+      button.setAttribute('toggle',1) //setting the toggle to 1 or odd
       button.value = a[i][x]
       button.setAttribute('value', a[i][x])
       button.style.width = size + "%" //like 20% width
@@ -113,12 +72,9 @@ function makeField(a) {
     board.appendChild(row);
     
   }
-  //loop within loop and make little boxes with bombs or numbers underneath and add them to the dom
+  
 } 
-// function showEmpty(){
-// if()
 
-// }
 
 markBombs = 0;                               //set markBombs to 0
 function markBomb(){
@@ -128,7 +84,7 @@ function markBomb(){
     if(toggleNum%2===0){                        //if this is even - remove flag
       this.innerHTML = `<div></div>`
       document.getElementById("score").innerHTML++
-      if(this.value ==="B"){                    //the this is even and the flag is removedand the value is B => decrease markbombs
+      if(this.value ==="B"){                    //the this is even and the flag is removed and the value is B => decrease markbombs
         markBombs--
       } 
     } else {                                    //if odd - add the flag
@@ -323,8 +279,6 @@ function gameOver(){
     
       beginGame(arr);
       makeField(arr);
-      
-
 }
 
 function showBombs(){
@@ -351,6 +305,7 @@ function showBombs(){
           mySound.play()
           button.innerHTML = `<span><img src='./time-bomb.png'/></span>`
           button.style.backgroundColor = 'tomato'
+         
         } 
       },i*333)
     })
@@ -364,8 +319,6 @@ function mouseDownWaiting() {
   },4000)
 } 
 
-// function gameOverImage() {
 
-// } 
 
   
